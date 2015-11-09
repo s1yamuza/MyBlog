@@ -1,0 +1,36 @@
+<div class="col-md-4">
+    <!-- Blog Categories Well -->
+
+    {% if categories or tags %}
+
+    <div class="well">
+
+        <h4>Categorías</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <ul class="list-unstyled">
+                    {% for cat in categories if categories %}
+                        <li><a href="{{ path('archive_category', { 'slug': cat.slug }) }}">{{ cat.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- /.col-lg-6 -->
+        </div>
+
+        <h4>Etiquetas</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <ul class="list-unstyled">
+                    {% for tag in tags %}
+                        <li><a href="{{ path('archive_tag', { 'slug': tag.slug }) }}">{{ tag.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- /.col-lg-6 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    {% endif  %}
+
+
+</div>

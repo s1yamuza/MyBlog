@@ -1,0 +1,61 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+                <!-- First Blog Post -->
+                <div class="col-md-12" style="margin-bottom: 30px;">
+                    <h2>
+                        <img width="26" src="{{ asset('apple-touch-icon.png') }}"/> <a href="{{ path('show_post', { 'id': post.id, 'slug': post.slug }) }}">{{ post.title }}</a>
+                    </h2>
+                    <p class="lead">
+                        Categoría <a href="{{ path('archive_category', { 'slug': post.category.slug }) }}">{{ post.category }}</a>
+                    </p>
+                    <hr>
+                    <p>{{ post.description }}</p>
+                </div>
+
+                <h3>Comentarios:</h3>
+                {% for comment in post.comments %}
+                    <p>{{ comment.content }}</p>
+                {% endfor %}
+
+                <hr />
+                {% if is_granted('ROLE_ADMIN') %}
+                    <p>Deja un comentario:</p>
+                    {{ form(form) }}
+                {% else %}
+                    <p>Debes iniciar sesión para poder añadir un comentario. <a href="{{ path('fos_user_security_login') }}">Login</a></p>
+                {% endif %}
+
+            </div>
+
+            <!-- Blog Sidebar Widgets Column -->
+            {% include 'public/_sidebar.html.twig' %}
+
+        </div>
+        <!-- /.row -->
+
+
+        <!-- Footer -->
+        <footer>
+            <hr />
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Este obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional</a>.
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+{% endblock %}
