@@ -1,72 +1,67 @@
-Symfony Standard Edition
+Aplicación **MyBlog**
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Pequeña aplicación Symfony2 utilizada como ejemplo durante el desarrollo del tutorial: Symfony2 tutorial.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+El código de la aplicación ha sido refactorizado y puede haber pequeñas variaciones respecto al contenido del tutorial.
 
-What's inside?
+Instalación
 --------------
+Inicializar el respositorio
 
-The Symfony Standard Edition is configured with the following defaults:
+```
+cd /var/www/
 
-  * An AppBundle you can use to start coding;
+git init
+```
 
-  * Twig as the only configured template engine;
+Clonar el proyecto
 
-  * Doctrine ORM/DBAL;
+```
+git clone https://github.com/s1yamuza/MyBlog.git NombreDelProyecto
+```
+Establecer los valores necesarios en el archivo app/config/parameters.yml
 
-  * Swiftmailer;
+Instalación de dependencias
 
-  * Annotations enabled for everything.
+```
+$ composer install
+```
 
-It comes pre-configured with the following bundles:
+Crear base de datos y actualizar su esquema
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+```
+$ php app/console doctrine:schema:update --force
+```
+Instalar assets
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+```
+$ php app/console assets:install
+$ php app/console assetic:dump
+```
+Limpiar caché
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+```
+$ php app/console cache:clear
+```
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+Crear usuario administrador
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+```
+php app/console fos:user:create $USUARIO $EMAIL $CONTRASEÑA
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+php app/console fos:user:promote admin ROLE_SUPER_ADMIN
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+```
 
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/2.7/book/installation.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/2.7/book/doctrine.html
-[8]:  https://symfony.com/doc/2.7/book/templating.html
-[9]:  https://symfony.com/doc/2.7/book/security.html
-[10]: https://symfony.com/doc/2.7/cookbook/email.html
-[11]: https://symfony.com/doc/2.7/cookbook/logging/monolog.html
-[12]: https://symfony.com/doc/2.7/cookbook/assetic/asset_management.html
-[13]: https://symfony.com/doc/2.7/bundles/SensioGeneratorBundle/index.html
+Tutorial
+--------------
+1. [**Introducción, instalación y configuración**][1]
+2. [**Controlador**][2]
+3. [**Vista: plantillas con Twig**][3]
+4. [**Modelo: base de datos con Doctrine**][4]
+5. [**Formularios**][5]
+6. [**Bundles**][6]
+7. [**Seguridad y Acceso**][7]
+8. [**Servicios e inyección de dependencias**][8]
+9. [**Cuentas de usuario**][9]
